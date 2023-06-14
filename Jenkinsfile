@@ -23,13 +23,13 @@ pipeline {
             }
         }
         stage("Deploy on Production"){
-             input {
-                message "Should we continue?"
-                ok "Yes we Should"
-            }
+            //input {
+            //    message "Should we continue?"
+            //    ok "Yes we Should"
+            //}
             steps{
                 // deploy on container -> plugin
-               deploy adapters: [tomcat9(credentialsId: 'tomcat9serverdetails', path: '', url: 'http://10.0.2.15:8081')], contextPath: '/app', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat9serverdetails', path: '', url: 'http://10.0.2.15:8081')], contextPath: '/app', war: '**/*.war'
             }
         }
     }
@@ -39,7 +39,7 @@ pipeline {
         }
         success{
             echo "========pipeline executed successfully ========"
-             slackSend channel: 'youtubejenkins', message: 'Success'
+            // slackSend channel: 'youtubejenkins', message: 'Success'
         }
         failure{
             echo "========pipeline execution failed========"
