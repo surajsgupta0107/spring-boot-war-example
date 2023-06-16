@@ -7,8 +7,8 @@ pipeline {
     stages {
         stage("Test"){
             steps{
-                sh "mvn test"
                 slackSend channel: 'jenkins-project', message: 'Job Started'
+                sh "mvn test"
             }
         }
         stage("Build"){
